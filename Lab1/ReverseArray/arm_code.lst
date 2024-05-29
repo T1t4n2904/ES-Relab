@@ -1,0 +1,141 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET, DATA, READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 10001000        DCD              0x10001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 ALIGN
+    9 00000008         
+   10 00000008                 AREA             mycode, CODE, READONLY ; readon
+                                                            ly when code : in r
+                                                            am, or code memory
+   11 00000000                 ENTRY
+   12 00000000                 EXPORT           Reset_Handler
+   13 00000000         
+   14 00000000         Reset_Handler
+   15 00000000 F04F 0902       mov              r9, #2
+   16 00000004 480C            ldr              r0, =SRC
+   17 00000006 490D            ldr              r1, = SRC + (12)
+   18 00000008         
+   19 00000008         loop
+   20 00000008 6804            ldr              r4, [r0]
+   21 0000000A 680D            ldr              r5, [r1]
+   22 0000000C 4634            mov              r4, r6
+   23 0000000E 4625            mov              r5, r4
+   24 00000010 462E            mov              r6, r5
+   25 00000012 F840 4B04       str              r4, [r0], #4
+   26 00000016 F841 5904       str              r5, [r1], #-4
+   27 0000001A F1B9 0901       subs             r9, #1
+   28 0000001E F1B9 0F00       cmp              r9, #0
+   29 00000022 D1F1            bne              loop
+   30 00000024         
+   31 00000024         STOP
+   32 00000024 E7FE            B                STOP
+   33 00000026         
+   34 00000026 00 00 00000001 
+              00000002 
+              00000003 
+              00000004 SRC     DCD              0X1, 0X2, 0X3, 0X4
+   35 00000038         
+   36 00000038 00000000 
+              0000000C         AREA             mydata, DATA, READWRITE
+   37 00000000         
+   38 00000000                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=arm_code
+.d -oarm_code.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\AR
+M\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=arm_code.lst arm_code.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file arm_code.s
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file arm_code.s
+   Uses
+      At line 2 in file arm_code.s
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 14 in file arm_code.s
+   Uses
+      At line 6 in file arm_code.s
+      At line 12 in file arm_code.s
+
+SRC 00000028
+
+Symbol: SRC
+   Definitions
+      At line 34 in file arm_code.s
+   Uses
+      At line 16 in file arm_code.s
+      At line 17 in file arm_code.s
+
+STOP 00000024
+
+Symbol: STOP
+   Definitions
+      At line 31 in file arm_code.s
+   Uses
+      At line 32 in file arm_code.s
+Comment: STOP used once
+loop 00000008
+
+Symbol: loop
+   Definitions
+      At line 19 in file arm_code.s
+   Uses
+      At line 29 in file arm_code.s
+Comment: loop used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 10 in file arm_code.s
+   Uses
+      None
+Comment: mycode unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 36 in file arm_code.s
+   Uses
+      None
+Comment: mydata unused
+1 symbol
+341 symbols in table
